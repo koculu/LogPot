@@ -1,0 +1,30 @@
+{
+  "name": "@logpot/printer",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
+  "main": "./dist/printer.cjs",
+  "module": "./dist/printer.js",
+  "types": "./dist/printer.d.ts",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/printer.cjs",
+      "import": "./dist/printer.js"
+    }
+  },
+  "license": "MIT",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@logpot/utils": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src",
+    "test": "vitest"
+  }
+}
