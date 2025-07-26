@@ -11,6 +11,7 @@ jobs:
   publish:
     name: Build, Test & Publish
     runs-on: ubuntu-latest
+    environment: build
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
