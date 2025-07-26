@@ -1,0 +1,27 @@
+{
+  "name": "@logpot/utils",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
+  "main": "./dist/utils.cjs",
+  "module": "./dist/utils.js",
+  "types": "./dist/utils.d.ts",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/utils.cjs",
+      "import": "./dist/utils.js"
+    }
+  },
+  "license": "MIT",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src",
+    "test": "vitest"
+  }
+}
