@@ -54,7 +54,7 @@ await logger.close()
 ## 📚 Documentation & Community
 
 - **Site & Guides:** [https://tenray.io/logpot](https://tenray.io/logpot)
-- **API Reference:** [https://tenray.io/logpot/docs/reference](https://tenray.io/logpot/docs/reference)
+- **API Reference:** [https://tenray.io/logpot/reference](https://tenray.io/logpot/reference)
 - **GitHub:** [https://github.com/koculu/logpot](https://github.com/koculu/logpot)
 - **Discussions & Support:** [https://github.com/koculu/logpot/discussions](https://github.com/koculu/logpot/discussions)
 

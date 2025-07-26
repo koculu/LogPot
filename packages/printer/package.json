@@ -1,12 +1,21 @@
 {
   "name": "@logpot/printer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "yarn@4.9.2",
   "main": "./dist/printer.cjs",
   "module": "./dist/printer.js",
   "types": "./dist/printer.d.ts",
   "type": "module",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koculu/logpot.git",
+    "directory": "packages/printer"
+  },
+  "homepage": "https://tenray.io/logpot",
+  "bugs": {
+    "url": "https://github.com/koculu/logpot/issues"
+  },
   "exports": {
     ".": {
       "require": "./dist/printer.cjs",

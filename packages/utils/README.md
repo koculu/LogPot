@@ -2,7 +2,7 @@
   <h1 align="center">@logpot/utils</h1>
 </p>
 
-[![npm version](https://img.shields.io/npm/v/@logpot/utils.svg)](https://www.npmjs.com/package/@logpot/utils) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Futils-green)](https://tenray.io/logpot/docs/reference/utils)
+[![npm version](https://img.shields.io/npm/v/@logpot/utils.svg)](https://www.npmjs.com/package/@logpot/utils) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Futils-green)](https://tenray.io/logpot/reference/utils)
 
 A collection of general-purpose utilities powering LogPot and any other TypeScript/Node.js projects: error handling, retries, timeouts, templating, parsing, concurrency, and more.
 
@@ -99,7 +99,7 @@ const payload = serializeError(new Error('Oops'), { stack: true })
 ## 📚 Documentation & Community
 
 - **LogPot Main Site:** [https://tenray.io/logpot](https://tenray.io/logpot)
-- **Utils API Reference:** [https://tenray.io/logpot/docs/reference/utils](https://tenray.io/logpot/docs/reference/utils)
+- **Utils API Reference:** [https://tenray.io/logpot/reference/utils](https://tenray.io/logpot/reference/utils)
 - **GitHub Repository:** [https://github.com/koculu/logpot/tree/main/packages/utils](https://github.com/koculu/logpot/tree/main/packages/utils)
 - **Issues & Discussions:** [https://github.com/koculu/logpot/discussions](https://github.com/koculu/logpot/discussions)
 
