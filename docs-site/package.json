@@ -1,0 +1,19 @@
+{
+  "name": "logpot-doc-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "yarn docs && astro dev",
+    "build": "yarn docs && astro build",
+    "preview": "yarn docs && astro preview",
+    "docs": "typedoc"
+  },
+  "devDependencies": {
+    "@astrojs/starlight": "^0.35.1",
+    "astro": "^5.12.0",
+    "gray-matter": "^4.0.3",
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-frontmatter": "^1.3.0",
+    "typedoc-plugin-markdown": "^4.7.1"
+  }
+}

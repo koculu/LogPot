@@ -1,0 +1,109 @@
+---
+title: LogPot
+template: splash
+sidebar:
+  order: 1
+hero:
+  title: "LogPot"
+  tagline: |
+    A modern logging library for TypeScript with custom levels, worker-thread offloading, fully customizable templates, and built-in transports featuring file rotation, retention, batching, compression, HTTP authentication (OAuth2, Basic, ...) and more.
+  image:
+    file: ../../assets/logpot-logo.svg
+  actions:
+    - text: "Get Started"
+      icon: right-arrow
+      link: ./getting-started
+    - text: "View on GitHub"
+      icon: external
+      variant: minimal
+      link: https://github.com/koculu/logpot
+      attrs:
+        target: _blank
+---
+
+import { CardGrid, Card, LinkCard } from '@astrojs/starlight/components';
+
+LogPot makes structured, high-performance logging effortless.  
+Whether you’re shipping logs to stdout, files with rotation, HTTP endpoints, or your own custom sink, LogPot’s clean API and robust feature set let you focus on your application. never your logger.
+
+<CardGrid stagger>
+  <Card title="✅ Type-Safe Events" icon="seti:typescript">
+    Define custom level maps & metadata shapes with full compile-time guarantees.
+  </Card>
+
+  <Card title="🔌 Pluggable Transports" icon="seti:docker">
+    Console, File (rotation, batching, retries), HTTP (auth, batching), or your own sink via abstract base.
+  </Card>
+
+  <Card title="🎨 Powerful Formatting" icon="seti:json">
+    Out-of-the-box JSON-array, NDJSON, envelope, or fully templatable text with padding, truncation, colors & emoji.
+  </Card>
+
+  <Card title="🐞 Robust Error Handling" icon="error">
+    Turn <code>Error</code> objects (including nested causes & <code>AggregateError</code>) into safe, circular-free JSON with optional stack & hooks.
+  </Card>
+
+  <Card title="⚙️ Fine-Grained Control" icon="setting">
+    Level filters, category sets, sync/async transformers, gzip compression, custom field maps, and merge-meta options.
+  </Card>
+
+  <Card title="🧵 Worker Threads" icon="rocket">
+    Push heavy I/O and formatting off the event loop. keep your app responsive at scale.
+  </Card>
+
+</CardGrid>
+
+---
+
+## 🚦 Quick Links
+
+<LinkCard
+  title="Overview"
+  href="overview"
+  description="Why LogPot is different"
+  icon="puzzle"
+/>
+<LinkCard
+  title="Getting Started"
+  href="getting-started"
+  description="Your first few lines of code"
+  icon="rocket"
+/>
+<LinkCard
+  title="Features"
+  href="features"
+  description="In-depth walkthrough"
+  icon="list"
+/>
+<LinkCard
+  title="Transports"
+  href="transports"
+  description="Built-in & custom sinks"
+  icon="share"
+/>
+<LinkCard
+  title="Formatting"
+  href="formatting"
+  description="Templates, JSON, NDJSON & more"
+  icon="paintcan"
+/>
+<LinkCard
+  title="API Reference"
+  href="reference"
+  description="All types, interfaces & functions"
+  icon="file-code"
+/>
+<LinkCard
+  title="Contributing"
+  href="https://github.com/koculu/logpot/blob/main/.github/CONTRIBUTING.md"
+  description="Help build the future of logging"
+  icon="heart"
+  target="_blank"
+/>
+<LinkCard
+  title="Community & Support"
+  href="https://github.com/koculu/logpot/discussions"
+  description="Join discussions or ask questions"
+  icon="comment"
+  target="_blank"
+/>

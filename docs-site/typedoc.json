@@ -1,0 +1,24 @@
+{
+    "out": "./src/content/docs/reference",
+    "plugin": [
+        "typedoc-plugin-markdown",
+        "typedoc-plugin-frontmatter",
+        "./frontmatter.mjs"
+    ],
+    "entryPoints": [
+        "../packages/logpot/src/index.ts",
+        "../packages/utils/src/index.ts",
+        "../packages/printer/src/index.ts"
+    ],
+    "tsconfig": "../tsconfig.json",
+    "mergeReadme": false,
+    "entryFileName": "index.md",
+    "name": "Overview",
+    "readme": "none",
+    "disableSources": true,
+    "frontmatterGlobals": {},
+    "hideBreadcrumbs": true,
+    "hidePageTitle": true,
+    "hidePageHeader": true,
+    "publicPath": "/reference",
+}

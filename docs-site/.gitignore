@@ -1,0 +1,14 @@
+node_modules
+dist/
+*.tgz
+.astro
+.yarn
+
+# Yarn (Berry) artifacts
+.pnp.*
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/sdks/
+src/content/docs/Reference

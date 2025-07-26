@@ -1,0 +1,114 @@
+---
+title: Overview
+template: doc
+sidebar:
+  order: 3
+---
+
+import { CardGrid, Card, LinkCard } from '@astrojs/starlight/components';
+
+LogPot is a modern, TypeScript-first logging library for Node.js that makes it easy to emit structured, high-performance logs anywhere you need them. console, files, HTTP endpoints, or your own custom sink. It provides:
+
+- **Structured, Typed Logs**
+  Every log entry is a plain object with well-defined properties (`msg`, `level`, `time`, `meta`), making downstream processing, aggregation and querying a breeze.
+
+- **Pluggable Transports**
+  Choose from built-in transports (console, file with rotation, HTTP) or write your own by subclassing the abstract `Transport`. Offload heavy I/O to worker threads for minimal impact on your main event loop.
+
+- **Rich Formatting & Themes**
+  Serialize logs as JSON arrays, NDJSON, envelopes, or fully-customizable templates with padding, truncation, color/styling (including hex/RGB colors and emojis). Easy to adapt for human-readable console output or machine-ingestion.
+
+- **Error Serialization**
+  Turn thrown `Error` objects (including nested causes and `AggregateError`) into safe, circular-free descriptors with optional stack, cause and aggregation support.
+
+- **Fine-Grained Control**
+
+  - **Filtering & Transformation**: Drop or mutate logs before they’re emitted.
+  - **Level Definitions**: Default levels (TRACE→FATAL) or define your own name⇄number mappings.
+  - **Global & Per-Transport Settings**: Control minimum levels, categories, batching, retries, back-pressure, gzip compression, and more.
+
+LogPot aims to give you both a **developer-friendly** API (TypeScript types, child loggers, scoped metadata) and **production-ready** robustness (async job queues, automatic file rotation, retry logic, worker isolation). Perfect for services, CLIs, or any Node.js app that demands reliability and clarity in its logs.
+
+<CardGrid>
+
+  <Card title="Custom Levels" icon="setting">
+    Define your own severity names and numeric priorities (e.g. “TRACE”, “DEBUG”, “MY_ALERT”) to match your application’s needs.
+  </Card>
+
+  <Card title="Worker-Thread Offloading" icon="rocket">
+    Push heavy I/O and formatting work into background threads so your main event loop stays responsive.
+  </Card>
+
+  <Card title="Templated Formatting" icon="seti:json">
+    Render logs as JSON-array, NDJSON, enveloped JSON, or fully-templated text with padding, truncation, colors, emojis, and custom hooks.
+  </Card>
+
+  <Card title="Built-In Transports" icon="heart">
+    Batteries-included support for:
+    <ul>
+      <li>File transport with rotation, retention, batching & compression</li>
+      <li>HTTP transport with Basic, Bearer, API-Key or OAuth2 authentication</li>
+      <li>Console transport, or roll your own via the abstract<code>Transport</code> base</li>
+    </ul>
+  </Card>
+
+</CardGrid>
+
+---
+
+## Core Concepts
+
+### Logger
+
+A fully-typed, level-aware interface with convenience methods (`.info()`, `.error()`, etc.), plus `.child()` and `.withMeta()` for structured contexts.
+
+### Transports
+
+Abstract sinks that receive `Log` objects. Choose from built-in Console, File, HTTP, or implement your own by extending the `Transport` base.
+
+### Formatter
+
+Controls the wire format of your logs. Swap between JSON arrays, NDJSON, envelopes or free-form templates. Configure field mapping, gzip compression, and custom placeholder hooks.
+
+### Error Serialization
+
+Automatically convert `Error`, `AggregateError`, and nested `cause` chains into safe, circular-free error stacks and custom hooks included.
+
+---
+
+## Quick Example
+
+```ts
+import { createLogger } from 'logpot'
+
+const logger = await createLogger({
+  levels: { TRACE: 10, DEBUG: 20, INFO: 30, WARN: 40, ERROR: 50 },
+  runAsWorker: true,
+  consoleTransport: {
+    formatter: {
+      kind: 'template',
+      template: '{time} {level:lower padend 6} {msg}\n{meta}',
+    }
+   },
+  fileTransport: {
+    filename: 'app.log',
+    rotate: { interval: 'daily', maxFiles: 7, maxSize: 1_024_000, compress: true },
+    batchSize: 100,
+    flushInterval: 2000,
+  },
+  httpTransport: {
+    url: 'https://ingest.acme.com/logs',
+    auth: {
+      type: 'oauth2',
+      tokenUrl: 'https://auth.acme.com/token',
+      clientId,
+      clientSecret,
+    },
+    batchSize: 50,
+    flushInterval: 5000,
+  },
+})
+
+logger.info('Server started', { port: 8080 })
+logger.error(new Error('Database failure'))
+```

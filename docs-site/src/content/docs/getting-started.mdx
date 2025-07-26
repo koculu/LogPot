@@ -1,0 +1,216 @@
+---
+title: Getting Started
+sidebar:
+  order: 2
+---
+
+import { Code, LinkCard } from '@astrojs/starlight/components'
+
+Quickly install and configure LogPot in your TypeScript project.
+
+## Install
+
+```bash
+npm install logpot
+# or
+yarn add logpot
+```
+
+
+## Create a Logger
+
+```ts
+import { createLogger } from 'logpot'
+await createLogger()
+```
+
+## Emit Logs
+
+```ts
+import { getLogger } from 'logpot'
+
+const logger = getLogger()
+logger.info('Application started')
+logger.error(new Error('Something went wrong'))
+```
+
+## Custom Levels
+
+```ts
+import { createLogger } from 'logpot'
+
+const customLevels = {
+  VERBOSE: 5,
+  DEBUG: 10,
+  INFO: 20,
+  WARN: 30,
+  ERROR: 40,
+  FATAL: 50,
+}
+
+const logger = await createLogger({ levels: customLevels })
+
+logger.verbose('Very detailed debug info')
+```
+
+## Disable Worker-Thread Offloading 
+
+Disable offloading heavy I/O and formatting to a dedicated thread:
+
+```ts
+const logger = await createLogger({
+  consoleTransport: { 
+    runAsWorker: false
+  },
+})
+```
+
+## Fully-Customizable Templates
+
+Define your own line format, colors, emojis, padding, and more:
+
+```ts
+const logger = await createLogger({
+  consoleTransport: {
+    formatter: {
+      kind: 'template',
+      template: `{'┌────────────────────────┐':theme level}
+{'│':theme level} {time} {level:padEnd 6} {emoji} {'│':theme level} {msg}
+{'└────────────────────────┘':theme level}
+{meta}
+
+`,
+      emojis: { INFO: 'ℹ️', ERROR: '❌', DEBUG: '🐛' },
+      printer: {
+        theme: {
+          '*': {
+            key: '#6c6c6c',
+            msg: 'bg#3f260a #4444ff doubleunderline',
+          },
+          ERROR: {
+             msg: 'bg#3f260a #ff44aa doubleunderline',
+          }
+          INFO: {
+             msg: 'bg#3f260a #6415ff doubleunderline',
+          }
+        }
+      }
+    },
+  },
+})
+```
+
+## Built-In Transports
+
+### File Transport with Rotation & Retention
+
+```ts
+const logger = await createLogger({
+  fileTransport: {
+    filename: './logs/app.log',
+    rotate: { interval: 'daily', maxFiles: 7, compress: true, maxSize: 1_024_000 },
+    batchSize: 200,
+    flushInterval: 3000,
+  },
+})
+```
+
+### HTTP Transport with Auth & Batching
+
+```ts
+const logger = await createLogger({
+  httpTransport: {
+    url: 'https://logs.example.com/ingest',
+    auth: { type: 'bearer', token: process.env.LOG_TOKEN! },
+    batchSize: 100,
+    flushInterval: 5000,
+  },
+})
+```
+
+### OAuth2 Authentication
+
+```ts
+import { createLogger } from 'logpot';
+
+const logger = await createLogger({
+  httpTransport: {
+    url: 'https://logs.example.com/ingest',
+    auth: {
+      type: 'oauth2',
+      tokenUrl: 'https://auth.example.com/oauth2/token',
+      clientId: process.env.OAUTH_CLIENT_ID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      scope: 'logs.write',
+      retry: {
+        maxRetry: 3,
+        baseDelay: 500,
+        maxDelay: 2000,
+      },
+    },
+    batchSize: 100,
+    flushInterval: 5000,
+  },
+});
+```
+
+## Graceful shutdown
+
+In just a few lines, you can wire up LogPot, emit structured logs at multiple levels, and gracefully shut down:
+
+```ts
+import { createLogger, getLogger } from 'logpot'
+
+async function main() {
+  // 1. Initialize the logger (uses a console transport by default)
+  await createLogger()
+
+  // 2. you can use getLogger() to access singleton logger instance from anywhere.
+  const logger = getLogger()
+
+  // 3. Use level-specific methods to emit logs:
+  logger.trace('Trace details') // verbose debugging
+  logger.debug('Debugging details', { userId: 123 }) // attach metadata
+  logger.info('Server started on port 8080') // informational
+  logger.warn('Low disk space', { availableMB: 512 }) // warning with context
+  logger.error(new Error('Something broke!')) // serialize Error objects
+
+  // 4. On application shutdown, flush buffers and terminate workers
+  await logger.close()
+}
+
+main().catch(console.error)
+```
+
+**What’s happening?**
+
+1. **`createLogger()`**
+   Returns a promise for a ready-to-use `Logger` instance. By default, it adds a `ConsoleTransport`, so all logs appear on your stdout with colors and timestamps.
+
+2. **`getLogger()`**
+   Returns the created singleton `Logger` instance.
+
+3. **Level methods**
+   Instead of manually calling `logger.log('INFO', ...)`, you get convenient methods:
+
+   ```ts
+   logger.info('Hello world')
+   logger.error(new Error('Oops'))
+   ```
+
+   Each level method accepts either:
+
+   - A string message (and optional metadata), or
+   - An `Error` or metadata object directly (with `resolveMessage` auto-extracting a message).
+
+4. **Structured metadata**
+   Pass any plain object as a second argument to attach context:
+
+   ```ts
+   logger.debug('User login', { user: 'alice', sessionId: 'XYZ' })
+   ```
+
+5. **Graceful shutdown**
+   Calling `logger.close()` ensures that all pending logs are flushed, any worker threads are terminated, and file or HTTP transports complete any in-flight operations.
+
+That’s it. LogPot is now capturing and formatting your logs with minimal setup!
