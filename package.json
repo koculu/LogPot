@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "logpot-repo",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
+  "type": "module",
+  "sideEffects": false,
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@stylistic/eslint-plugin": "^5.2.2",
+    "@types/node": "^24.0.7",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.31.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-tsdoc": "^0.4.0",
+    "tsdown": "^0.13.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.3"
+  },
+  "files": [],
+  "scripts": {
+    "build": "yarn workspaces foreach --no-private --all --verbose --topological -- run build",
+    "lint": "yarn workspaces foreach --no-private --all --verbose --topological -- run lint",
+    "bundle": "yarn tsx --no-warnings scripts/bundle.ts && eslint 'packages/**/*.d.ts' --fix",
+    "test": "vitest",
+    "package": "yarn workspaces foreach --no-private --all --parallel pack"
+  }
+}
