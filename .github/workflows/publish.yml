@@ -44,6 +44,6 @@ jobs:
 
       - name: Publish each workspace
         # Publishes every non-private package under packages/*
-        run: yarn workspaces foreach -all --topological --no-private npm publish --access public
+        run: yarn workspaces foreach --all --topological --no-private npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
