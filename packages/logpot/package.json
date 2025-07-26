@@ -1,0 +1,43 @@
+{
+  "name": "logpot",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.9.2",
+  "main": "./dist/logpot.cjs",
+  "module": "./dist/logpot.js",
+  "types": "./dist/logpot.d.ts",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/logpot.cjs",
+      "import": "./dist/logpot.js"
+    },
+    "./transports/consoleTransport.worker": {
+      "require": "./dist/transports/consoleTransport.worker.cjs",
+      "import": "./dist/transports/consoleTransport.worker.js"
+    },
+    "./transports/fileTransport.worker": {
+      "require": "./dist/transports/fileTransport.worker.cjs",
+      "import": "./dist/transports/fileTransport.worker.js"
+    },
+    "./transports/httpTransport.worker": {
+      "require": "./dist/transports/httpTransport.worker.cjs",
+      "import": "./dist/transports/httpTransport.worker.js"
+    }
+  },
+  "license": "MIT",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@logpot/printer": "workspace:*",
+    "@logpot/utils": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint ./src",
+    "test": "vitest"
+  }
+}
