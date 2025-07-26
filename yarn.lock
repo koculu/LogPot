@@ -444,6 +444,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@logpot/printer@workspace:*, @logpot/printer@workspace:packages/printer":
+  version: 0.0.0-use.local
+  resolution: "@logpot/printer@workspace:packages/printer"
+  dependencies:
+    "@logpot/utils": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@logpot/utils@workspace:*, @logpot/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@logpot/utils@workspace:packages/utils"
+  languageName: unknown
+  linkType: soft
+
 "@microsoft/tsdoc-config@npm:0.17.1":
   version: 0.17.1
   resolution: "@microsoft/tsdoc-config@npm:0.17.1"
@@ -2220,6 +2234,15 @@ __metadata:
     typescript-eslint: "npm:^8.38.0"
     vite-tsconfig-paths: "npm:^5.1.4"
     vitest: "npm:^3.2.3"
+  languageName: unknown
+  linkType: soft
+
+"logpot@workspace:packages/logpot":
+  version: 0.0.0-use.local
+  resolution: "logpot@workspace:packages/logpot"
+  dependencies:
+    "@logpot/printer": "workspace:*"
+    "@logpot/utils": "workspace:*"
   languageName: unknown
   linkType: soft
 
