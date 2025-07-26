@@ -1,0 +1,49 @@
+name: Build & Test
+
+on:
+  push:
+    branches: ['main']
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    branches: ['main']
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  publish:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js & configure npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@logpot'
+
+      - name: Activate Yarn 4
+        run: corepack prepare yarn@4.9.2 --activate
+
+      - name: Cache Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable --immutable-cache
+
+      - name: Run lint and tests
+        run: yarn lint && yarn test
+
+      - name: Build all packages
+        run: yarn build
+
+      - name: Bundle all packages
+        run: yarn bundle
