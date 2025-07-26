@@ -2,7 +2,7 @@
   <h1 align="center">@logpot/printer</h1>
 </p>
 
-[![npm version](https://img.shields.io/npm/v/@logpot/printer.svg)](https://www.npmjs.com/package/@logpot/printer) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/koculu/logpot?tab=MIT-1-ov-file#readme) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Fprint-green)](https://tenray.io/logpot/reference/print)
+[![npm version](https://img.shields.io/npm/v/@logpot/printer.svg)](https://www.npmjs.com/package/@logpot/printer) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/koculu/logpot?tab=MIT-1-ov-file#readme) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Fprint-green)](https://tenray.io/logpot/reference/print/src)
 
 A flexible value formatter for LogPot: serialize JavaScript values into human‑readable strings with configurable depth, indentation, colors, and custom formatters.
 

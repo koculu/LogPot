@@ -2,7 +2,7 @@
   <h1 align="center">@logpot/utils</h1>
 </p>
 
-[![npm version](https://img.shields.io/npm/v/@logpot/utils.svg)](https://www.npmjs.com/package/@logpot/utils) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Futils-green)](https://tenray.io/logpot/reference/utils)
+[![npm version](https://img.shields.io/npm/v/@logpot/utils.svg)](https://www.npmjs.com/package/@logpot/utils) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://opensource.org/licenses/MIT) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot%2Futils-green)](https://tenray.io/logpot/reference/utils/src)
 
 A collection of general-purpose utilities powering LogPot and any other TypeScript/Node.js projects: error handling, retries, timeouts, templating, parsing, concurrency, and more.
 
