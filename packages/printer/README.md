@@ -70,7 +70,7 @@ console.log(
 ## 📚 Documentation & Community
 
 - **LogPot Main Site:** [https://tenray.io/logpot](https://tenray.io/logpot)
-- **Printer API Reference:** [https://tenray.io/logpot/reference/printer](https://tenray.io/logpot/reference/printer)
+- **Printer API Reference:** [https://tenray.io/logpot/reference/printer](https://tenray.io/logpot/reference/printer/src)
 - **GitHub Repository:** [https://github.com/koculu/logpot/tree/main/packages/printer](https://github.com/koculu/logpot/tree/main/packages/printer)
 - **Issues & Discussions:** [https://github.com/koculu/logpot/discussions](https://github.com/koculu/logpot/discussions)
 

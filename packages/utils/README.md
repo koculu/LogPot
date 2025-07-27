@@ -12,8 +12,8 @@ A collection of general-purpose utilities powering LogPot and any other TypeScri
 
 - **⚠️ Robust Error Handling**
 
-  - `makeAbortError` & `withAbort`: create and enforce abortable operations.
-  - `makeError` & `serializeError`: normalize thrown values into `Error` objects or serializable payloads.
+  - `makeAbortError`: create abort error.
+  - `serializeError`: normalize thrown values serializable payloads.
 
 - **🔄 Retry & Timeout**
 
@@ -99,7 +99,7 @@ const payload = serializeError(new Error('Oops'), { stack: true })
 ## 📚 Documentation & Community
 
 - **LogPot Main Site:** [https://tenray.io/logpot](https://tenray.io/logpot)
-- **Utils API Reference:** [https://tenray.io/logpot/reference/utils](https://tenray.io/logpot/reference/utils)
+- **Utils API Reference:** [https://tenray.io/logpot/reference/utils](https://tenray.io/logpot/reference/utils/src)
 - **GitHub Repository:** [https://github.com/koculu/logpot/tree/main/packages/utils](https://github.com/koculu/logpot/tree/main/packages/utils)
 - **Issues & Discussions:** [https://github.com/koculu/logpot/discussions](https://github.com/koculu/logpot/discussions)
 
