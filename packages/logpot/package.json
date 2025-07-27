@@ -1,6 +1,6 @@
 {
   "name": "logpot",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "packageManager": "yarn@4.9.2",
   "main": "./dist/logpot.cjs",
   "module": "./dist/logpot.js",

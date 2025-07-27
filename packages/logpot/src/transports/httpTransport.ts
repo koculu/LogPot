@@ -134,10 +134,10 @@ export class HttpTransport<
    */
   protected startFlushTimer() {
     if (this.hasWorker) return
-    this.flushTimer = setInterval(
-      () => this.flush(),
-      this.options.flushInterval
-    )
+    this.flushTimer = setInterval(() => {
+      if (this.hasWorker) this.stopFlushTimer()
+      else this.flush()
+    }, this.options.flushInterval)
   }
 
   /**
