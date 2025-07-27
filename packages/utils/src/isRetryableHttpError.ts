@@ -1,5 +1,3 @@
-import { isError } from './typeCheck'
-
 /**
  * Determines whether an HTTP error (or generic error) should be retried.
  *
@@ -10,7 +8,7 @@ import { isError } from './typeCheck'
  *   - 408 (Request Timeout)
  *   - 429 (Too Many Requests)
  *   - Any 5xx (server error) responses
- *   - Any Error instance without a numeric `status` property
+ *   - Anyhing without a numeric `status` property
  *
  * @param err - The error to inspect. May be an `Error` with an optional numeric `status` field.
  * @returns `true` if the error is retryable, otherwise `false`.
@@ -28,7 +26,7 @@ import { isError } from './typeCheck'
  * ```
  */
 export function isRetryableHttpError(err: unknown): boolean {
-  if (!isError(err)) return true
+  if (!err) return true
   const obj = err as unknown as Record<string, unknown>
   if (obj.status == null) return true
   const status = Number(obj.status)

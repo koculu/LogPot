@@ -1,4 +1,4 @@
-## ![LogPot](https://raw.githubusercontent.com//koculu/LogPot/main/docs-site/src/assets/logpot-logo.svg)
+## ![LogPot](https://raw.githubusercontent.com/koculu/LogPot/main/docs-site/src/assets/logpot-logo.svg)
 
 [![npm version](https://img.shields.io/npm/v/logpot.svg)](https://www.npmjs.com/package/logpot) ![License: MIT](https://img.shields.io/badge/License-MIT-blue) [![Docs](https://img.shields.io/badge/docs-tenray.io%2Flogpot-green)](https://tenray.io/logpot)
 

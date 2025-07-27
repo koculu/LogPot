@@ -382,10 +382,10 @@ export class Formatter<Levels extends Record<string, number> = DEFAULT_LEVELS> {
   }
 
   private buildJsonArray(records: Record<string, unknown>[]): string {
-    return '[' + this.getColoroedListOfRecords(records) + ']'
+    return '[' + this.getColoredListOfRecords(records) + ']'
   }
 
-  private getColoroedListOfRecords(records: Record<string, unknown>[]) {
+  private getColoredListOfRecords(records: Record<string, unknown>[]) {
     return records
       .map((r) => this.stringify(this.getRecordLevel(r), r))
       .join(',')
@@ -409,7 +409,7 @@ export class Formatter<Levels extends Record<string, number> = DEFAULT_LEVELS> {
   ): string {
     const key = options.envelopeKey ?? 'events'
     return `{
-    "${key}": ${this.getColoroedListOfRecords(records)}
+    "${key}": ${this.getColoredListOfRecords(records)}
 }`
   }
 

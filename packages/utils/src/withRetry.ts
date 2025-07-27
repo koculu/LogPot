@@ -150,7 +150,7 @@ export async function withRetry<T>(
         if (!retryErrorCodes.includes(code)) break
       }
 
-      if ((await onError?.(attempt + 1, err)) == RetryAction.STOP) break
+      if ((await onError?.(attempt, err)) == RetryAction.STOP) break
       lastError = err
       if (attempt < maxRetry) {
         const jitter = 0.5 + Math.random() * 0.5
