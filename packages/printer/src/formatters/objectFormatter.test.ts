@@ -125,7 +125,7 @@ b: 2`)
     const recorder: string[] = []
     const numberFormatter = {
       canFormat: (value: unknown) => typeof value === 'number',
-      format: (value: unknown, ctx: PrintContext, _printer: Printer) => {
+      format: (value: unknown, ctx: PrintContext) => {
         recorder.push(ctx.keys.join('.'))
         return String(value)
       },
