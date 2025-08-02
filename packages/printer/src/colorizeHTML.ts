@@ -21,7 +21,7 @@ export interface ColorizeHTMLConfig {
 }
 
 /**
- * Colorize an HTML string for console output. *
+ * Colorize an HTML string.
  *
  * @param html - raw HTML string to colorize.
  * @param config - optional {@link ColorizeHTMLConfig} to override defaults.
