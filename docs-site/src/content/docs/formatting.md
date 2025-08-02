@@ -25,9 +25,10 @@ type ColorOrColorizer = string | Colorizer
 Colorize small HTML fragments for terminal display.
 
 ```ts
+import { getLogger } from 'logpot'
 import { colorizeHTML } from '@logpot/printer'
 
-console.log(colorizeHTML('<span class="tag">Hi</span>'))
+getLogger().debug(colorizeHTML('<span class="tag">Hi</span>'))
 ```
 
 Pass a configuration object `{ tag, attrKey, attrValue, attrEq, content }` to

@@ -34,14 +34,12 @@ export interface ColorizeHTMLConfig {
  *
  * @example
  * ```ts
- * import { colorizeHTML } from '@logpot/printer'
- *
  * console.log(colorizeHTML('<div class="greet">Hi</div>'))
  * ```
  */
 export function colorizeHTML(
   html: string,
-  config: ColorizeHTMLConfig = {},
+  config: ColorizeHTMLConfig = {}
 ): string {
   const {
     content: contentOption = '#b40657',
@@ -70,6 +68,6 @@ export function colorizeHTML(
         return attrValueColor(m)
       })
       // Closing bracket or self-close
-      .replace(/(\/?>)/g, (m) => tagColor(m)),
+      .replace(/(\/?>)/g, (m) => tagColor(m))
   )
 }
