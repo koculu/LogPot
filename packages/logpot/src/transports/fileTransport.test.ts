@@ -430,6 +430,25 @@ describe('FileTransport worker-thread integration', () => {
     expect((t as any).worker).toBeInstanceOf(FakeWorker)
   })
 
+  it('runAsWorker stops flush timer', async () => {
+    class FakeWorker extends EventEmitter {
+      postMessage() {
+        setImmediate(() => this.emit('message', 'ready'))
+      }
+      terminate() {
+        return Promise.resolve()
+      }
+    }
+    const t = new FileTransport(STD_LEVEL_DEF, {
+      filename: path.join(testDir, 'timer.log'),
+    }) as any
+    const originalTimer = t.flushTimer
+    expect(originalTimer).toBeDefined()
+    t.createWorker = () => new FakeWorker()
+    await t.runAsWorker()
+    expect(t.flushTimer).toBeUndefined()
+  })
+
   it('close() sends close, waits for closed, then terminates', async () => {
     class FakeWorker extends EventEmitter {
       terminated = false

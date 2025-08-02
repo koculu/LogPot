@@ -210,6 +210,8 @@ export abstract class Transport<
 
   protected abstract flush(): void
 
+  protected abstract onRunAsWorker(): void | Promise<void>
+
   protected formatter: Formatter<Levels>
 
   constructor(
@@ -478,6 +480,7 @@ export abstract class Transport<
       }),
       'ready'
     )
+    await this.onRunAsWorker()
   }
 
   private assertStats() {

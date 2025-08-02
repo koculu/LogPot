@@ -148,10 +148,9 @@ export class FileTransport<
    *
    */
   protected startFlushTimer() {
-    if (this.hasWorker) return
+    if (this.flushTimer) return
     this.flushTimer = setInterval(() => {
-      if (this.hasWorker) this.stopFlushTimer()
-      else this.flush()
+      this.flush()
     }, this.options.flushInterval)
   }
 
@@ -159,7 +158,10 @@ export class FileTransport<
    * Stops the periodic flush timer.
    */
   protected stopFlushTimer() {
-    if (this.flushTimer) clearInterval(this.flushTimer)
+    if (this.flushTimer) {
+      clearInterval(this.flushTimer)
+      this.flushTimer = undefined
+    }
   }
 
   /**
@@ -257,6 +259,10 @@ export class FileTransport<
   protected async doClose(): Promise<void> {
     this.stopFlushTimer()
     await this.closeStream()
+  }
+
+  protected onRunAsWorker() {
+    this.stopFlushTimer()
   }
 
   private openStream() {
