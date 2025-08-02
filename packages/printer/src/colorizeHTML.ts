@@ -21,12 +21,7 @@ export interface ColorizeHTMLConfig {
 }
 
 /**
- * Colorize an HTML snippet for console output.
- *
- * The function performs a very small amount of parsing using regular
- * expressions and wraps different parts of the HTML string with ANSI
- * colors. It is not a full HTML parser but works well for debugging
- * or visualising small fragments.
+ * Colorize an HTML string for console output. *
  *
  * @param html - raw HTML string to colorize.
  * @param config - optional {@link ColorizeHTMLConfig} to override defaults.
@@ -34,7 +29,7 @@ export interface ColorizeHTMLConfig {
  *
  * @example
  * ```ts
- * console.log(colorizeHTML('<div class="greet">Hi</div>'))
+ * getLogger().debug(colorizeHTML('<div class="greet">Hi</div>'))
  * ```
  */
 export function colorizeHTML(
