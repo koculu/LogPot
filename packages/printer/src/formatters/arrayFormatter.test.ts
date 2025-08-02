@@ -23,6 +23,7 @@ const makeCtx = (
     colorConfig: colorlessConfig,
     seen: new WeakSet(),
     quotes: '"',
+    keys: [],
     prefix: '',
   }
 }

@@ -29,6 +29,7 @@ export function print(
     indentString,
     colorConfig: mergedColors,
     quotes: options?.quotes ?? '"',
+    keys: [],
     prefix: '',
   }
   return printer.print(value, ctx)
