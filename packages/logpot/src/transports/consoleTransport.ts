@@ -99,4 +99,6 @@ export class ConsoleTransport<
   }
 
   protected async doClose(): Promise<void> {}
+
+  protected onRunAsWorker() {}
 }

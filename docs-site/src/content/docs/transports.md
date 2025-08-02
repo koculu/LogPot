@@ -40,6 +40,7 @@ abstract class Transport<Levels extends Record<string, number>, Options extends 
   protected abstract flush(): void;
   protected abstract doFlushAndWait(): Promise<void>;
   protected abstract doClose(): Promise<void>;
+  protected abstract onRunAsWorker(): void;
 
   // Worker‑thread support, error handling, stats, etc.
 }
@@ -130,11 +131,12 @@ class FileTransport<Levels> extends Transport<Levels, FileTransportOptions<Level
   constructor(levelDef, opts) { … }
 
   protected doLog(log: Log<Levels>): void { queue & batch }
-  protected startFlushTimer(): boolean { … }
+  protected startFlushTimer(): void { … }
   protected stopFlushTimer(): void { … }
   protected flush(): void { /* write buffered batch */ }
   protected async doFlushAndWait(): Promise<void> { /* wait until flush completes */ }
   protected async doClose(): Promise<void> { /* flush & close streams */ }
+  protected onRunAsWorker(): void { /* stop timer */ }
   protected format(batch: Log<Levels>[]): string { JSON or printer output }
 }
 ```
@@ -170,12 +172,13 @@ class HttpTransport<Levels> extends Transport<Levels, HttpTransportOptions<Level
   constructor(levelDef, opts) { … }
 
   protected doLog(log: Log<Levels>): void { buffer.push(log); }
-  protected startFlushTimer(): boolean { … }
+  protected startFlushTimer(): void { … }
   protected stopFlushTimer(): void { … }
   protected flush(): void { this.sendBatch(buffered) }
   protected async doFlushAndWait(): Promise<void> { /* await in‑flight requests */ }
   protected async doClose(): Promise<void> { /* flush & wait */ }
   protected async sendBatch(batch: Log<Levels>[]): Promise<void> { /* HTTP call */ }
+  protected onRunAsWorker(): void { /* stop timer */ }
   protected format(batch: Log<Levels>): string|Buffer { JSON or NDJSON }
 }
 ```

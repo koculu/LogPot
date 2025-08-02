@@ -133,10 +133,9 @@ export class HttpTransport<
    * Starts the automatic flush timer if not managed by a worker.
    */
   protected startFlushTimer() {
-    if (this.hasWorker) return
+    if (this.flushTimer) return
     this.flushTimer = setInterval(() => {
-      if (this.hasWorker) this.stopFlushTimer()
-      else this.flush()
+      this.flush()
     }, this.options.flushInterval)
   }
 
@@ -144,7 +143,10 @@ export class HttpTransport<
    * Stops the automatic flush timer.
    */
   protected stopFlushTimer() {
-    if (this.flushTimer) clearInterval(this.flushTimer)
+    if (this.flushTimer) {
+      clearInterval(this.flushTimer)
+      this.flushTimer = undefined
+    }
   }
 
   /**
@@ -232,6 +234,10 @@ export class HttpTransport<
    * Cleans up transport by stopping the flush timer.
    */
   protected async doClose(): Promise<void> {
+    this.stopFlushTimer()
+  }
+
+  protected onRunAsWorker() {
     this.stopFlushTimer()
   }
 }
