@@ -22,7 +22,7 @@ type ColorOrColorizer = string | Colorizer
 
 ### colorizeHTML
 
-Colorize small HTML fragments for terminal display.
+Colorize HTML strings.
 
 ```ts
 import { getLogger } from 'logpot'
