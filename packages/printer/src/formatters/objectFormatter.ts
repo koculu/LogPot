@@ -3,6 +3,7 @@ import { isEmptyPlainObject, isPlainObject } from '@logpot/utils'
 import { toColorizer } from '../consoleColor'
 import { PrintContext } from '../printContext'
 import { Printer } from '../printer'
+import { escapeQuotes } from './escapeQuotes'
 import { IFormatter } from './formatter'
 import { getText } from './getText'
 import { ObjectFormatterConfig } from './objectFormatterConfig'
@@ -84,7 +85,7 @@ export class ObjectFormatter implements IFormatter {
     printer: Printer
   ): string {
     const coloredKey = toColorizer(ctx.colorConfig.key)(
-      `${ctx.quotes}${key}${ctx.quotes}`
+      escapeQuotes(key, ctx.quotes)
     )
 
     let indent = ctx.indent

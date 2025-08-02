@@ -4,6 +4,7 @@ import { isString } from '@logpot/utils'
 import { toColorizer } from '../consoleColor'
 import { PrintContext } from '../printContext'
 import { Printer } from '../printer'
+import { escapeQuotes } from './escapeQuotes'
 import { getText } from './getText'
 
 // A common interface for all formatters.
@@ -41,10 +42,8 @@ export class StringFormatter extends PrimitiveFormatter {
     return isString(value)
   }
   format(value: unknown, ctx: PrintContext) {
-    return getText(
-      ctx,
-      toColorizer(ctx.colorConfig.string)(`${ctx.quotes}${value}${ctx.quotes}`)
-    )
+    const str = escapeQuotes(value as string, ctx.quotes)
+    return getText(ctx, toColorizer(ctx.colorConfig.string)(str))
   }
 }
 
@@ -147,7 +146,7 @@ export class DateFormatter extends PrimitiveFormatter {
       case 'epoch':
         return colorizer(date.getTime().toString())
     }
-    return getText(ctx, colorizer(`${ctx.quotes}${str}${ctx.quotes}`))
+    return getText(ctx, colorizer(escapeQuotes(str, ctx.quotes)))
   }
 }
 
