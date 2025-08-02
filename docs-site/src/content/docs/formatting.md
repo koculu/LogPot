@@ -30,8 +30,8 @@ import { colorizeHTML } from '@logpot/printer'
 console.log(colorizeHTML('<span class="tag">Hi</span>'))
 ```
 
-Pass `{ tag, attrKey, attrValue, attrEq, content }` options to override the
-default colors.
+Pass a configuration object `{ tag, attrKey, attrValue, attrEq, content }` to
+override the default colors.
 
 ## Theme Configuration
 

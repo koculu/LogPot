@@ -1,13 +1,13 @@
 import { type ColorOrColorizer, toColorizer } from './consoleColor'
 
 /**
- * Options to customize {@link colorizeHTML}.
+ * Configuration options to customize {@link colorizeHTML}.
  *
  * Every field accepts either a colorizer function or a space separated list
  * of ANSI style tokens that will be converted to a colorizer function using
  * {@link toColorizer}.
  */
-export interface ColorizeOptions {
+export interface ColorizeHTMLConfig {
   /** Color applied to non-tag content. */
   content?: ColorOrColorizer
   /** Color for tag names and their brackets. */
@@ -29,7 +29,7 @@ export interface ColorizeOptions {
  * or visualising small fragments.
  *
  * @param html - raw HTML string to colorize.
- * @param options - optional {@link ColorizeOptions} to override defaults.
+ * @param config - optional {@link ColorizeHTMLConfig} to override defaults.
  * @returns the ANSI colored HTML string.
  *
  * @example
@@ -41,7 +41,7 @@ export interface ColorizeOptions {
  */
 export function colorizeHTML(
   html: string,
-  options: ColorizeOptions = {},
+  config: ColorizeHTMLConfig = {},
 ): string {
   const {
     content: contentOption = '#b40657',
@@ -49,7 +49,7 @@ export function colorizeHTML(
     attrKey: attrKeyColorOption = 'cyan',
     attrValue: attrValueColorOption = 'yellow',
     attrEq: attrEqColorOption = 'gray',
-  } = options
+  } = config
   const content = toColorizer(contentOption)
   const tagColor = toColorizer(tagColorOption)
   const attrKeyColor = toColorizer(attrKeyColorOption)

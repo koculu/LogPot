@@ -74,7 +74,7 @@ const html = '<div class="greet" data-id="1">Hello</div>'
 console.log(colorizeHTML(html))
 ```
 
-Override default colors by passing options:
+Override default colors by passing config:
 
 ```ts
 colorizeHTML(html, { tag: 'green', attrKey: 'magenta' })
