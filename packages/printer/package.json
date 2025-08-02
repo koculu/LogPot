@@ -1,6 +1,6 @@
 {
   "name": "@logpot/printer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packageManager": "yarn@4.9.2",
   "main": "./dist/printer.cjs",
   "module": "./dist/printer.js",

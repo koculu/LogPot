@@ -1,6 +1,6 @@
 {
   "name": "@logpot/utils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packageManager": "yarn@4.9.2",
   "main": "./dist/utils.cjs",
   "module": "./dist/utils.js",
