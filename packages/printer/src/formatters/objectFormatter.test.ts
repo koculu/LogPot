@@ -23,6 +23,7 @@ const makeCtx = (
     colorConfig: colorlessConfig,
     seen: new WeakSet(),
     quotes: '"',
+    keys: [],
     prefix: '',
   }
 }
@@ -117,5 +118,21 @@ b: 2`)
     expect(out.endsWith('}')).toBe(false)
     // Entries still present
     expect(out).toContain('"a": 1')
+  })
+
+  it('tracks keys in context during formatting', () => {
+    const ctx = makeCtx()
+    const recorder: string[] = []
+    const numberFormatter = {
+      canFormat: (value: unknown) => typeof value === 'number',
+      format: (value: unknown, ctx: PrintContext) => {
+        recorder.push(ctx.keys.join('.'))
+        return String(value)
+      },
+    }
+    const printer = new Printer([new ObjectFormatter(), numberFormatter])
+    printer.print({ a: { b: 1 }, c: 2 }, ctx)
+    expect(recorder).toEqual(['a.b', 'c'])
+    expect(ctx.keys).toEqual([])
   })
 })

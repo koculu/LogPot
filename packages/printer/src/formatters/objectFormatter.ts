@@ -48,9 +48,12 @@ export class ObjectFormatter implements IFormatter {
     const orgIndent = ctx.indent
     ctx.indent += ' '.repeat(orgPrefix.length)
     ctx.prefix = ''
-    const entries = displayed.map((k) =>
-      getText(ctx, this.formatEntry(k, obj[k], ctx, printer))
-    )
+    const entries = displayed.map((k) => {
+      ctx.keys.push(k)
+      const entry = getText(ctx, this.formatEntry(k, obj[k], ctx, printer))
+      ctx.keys.pop()
+      return entry
+    })
 
     const remaining = ordered.length - displayed.length
     if (remaining > 0) {

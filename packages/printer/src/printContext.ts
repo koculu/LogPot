@@ -41,6 +41,11 @@ export interface PrintContext {
   quotes: string
 
   /**
+   * Stack of object keys representing the current traversal path.
+   */
+  keys: string[]
+
+  /**
    * Prefix inserted before each line when printing multi-line values
    * (useful for nested or list items).
    */
