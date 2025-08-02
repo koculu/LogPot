@@ -1,4 +1,5 @@
 export { type ColorConfig, normalize } from './colorConfig'
+export { colorizeHTML, type ColorizeHTMLConfig } from './colorizeHTML'
 export {
   type Colorizer,
   type ColorOrColorizer,

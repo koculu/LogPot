@@ -20,6 +20,19 @@ type ColorOrColorizer = string | Colorizer
 - **ColorOrColorizer**
   Either a **space‑separated string** of style tokens _or_ your own transformer.
 
+### colorizeHTML
+
+Colorize small HTML fragments for terminal display.
+
+```ts
+import { colorizeHTML } from '@logpot/printer'
+
+console.log(colorizeHTML('<span class="tag">Hi</span>'))
+```
+
+Pass a configuration object `{ tag, attrKey, attrValue, attrEq, content }` to
+override the default colors.
+
 ## Theme Configuration
 
 ### ColorConfig & LogPotColorConfig

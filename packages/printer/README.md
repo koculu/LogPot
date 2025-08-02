@@ -65,6 +65,21 @@ console.log(
         custom))
 ```
 
+### Colorize HTML snippets
+
+```ts
+import { colorizeHTML } from '@logpot/printer'
+
+const html = '<div class="greet" data-id="1">Hello</div>'
+console.log(colorizeHTML(html))
+```
+
+Override default colors by passing config:
+
+```ts
+colorizeHTML(html, { tag: 'green', attrKey: 'magenta' })
+```
+
 ---
 
 ## 📚 Documentation & Community
