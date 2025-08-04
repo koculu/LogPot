@@ -83,7 +83,7 @@ export function createParser<C extends ParserConfig>(config: C) {
       if (!option.next && option.default == null)
         raw[token] = null as ParseResult<C>[typeof token]
       if (option.next) {
-        const nextToken = tokens[++i]
+        const nextToken = tokens[++i] ?? ''
         const parsed = option.next?.(nextToken)
         if (parsed == null) --i // step back to treat nextToken as normal
         else {

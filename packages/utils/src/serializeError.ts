@@ -227,5 +227,5 @@ export function serializeError(
     enumerable: false,
     configurable: false,
   })
-  return serializeError(err, options)
+  return err
 }

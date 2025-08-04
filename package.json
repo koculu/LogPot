@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "logpot-repo",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "packageManager": "yarn@4.9.2",
   "type": "module",
   "sideEffects": false,
