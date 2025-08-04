@@ -126,7 +126,8 @@ export async function withRetry<T>(
   if (reqOpt.maxRetry == null || reqOpt.maxRetry < 1) reqOpt.maxRetry = 1
   const { maxRetry, baseDelay, timeout, maxDelay } = reqOpt
   let lastError: unknown
-  for (let attempt = 1; attempt <= maxRetry; attempt++) {
+  let attempt = 1
+  for (; attempt <= maxRetry; attempt++) {
     const controller = timeout != 0 ? new AbortController() : null
     const signal = controller?.signal
     let timer: ReturnType<typeof setTimeout> | undefined
@@ -140,6 +141,7 @@ export async function withRetry<T>(
       if (timer) clearTimeout(timer)
       return result
     } catch (err) {
+      lastError = err
       if (timer) clearTimeout(timer)
 
       if (isAbortError(err)) throw err
@@ -151,7 +153,7 @@ export async function withRetry<T>(
       }
 
       if ((await onError?.(attempt, err)) == RetryAction.STOP) break
-      lastError = err
+
       if (attempt < maxRetry) {
         const jitter = 0.5 + Math.random() * 0.5
         const rawDelay = baseDelay * 2 ** (attempt - 1) * jitter
@@ -161,7 +163,7 @@ export async function withRetry<T>(
     }
   }
 
-  throw new Error(`Operation failed after ${maxRetry} attempts`, {
+  throw new Error(`Operation failed after ${attempt} attempts`, {
     cause: lastError,
   })
 }
