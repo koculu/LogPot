@@ -22,7 +22,7 @@ A modern logging library for TypeScript with custom levels, worker-thread offloa
   Filters, transformers, custom level maps, categories, gzip, merge‑meta—everything you need to tailor your pipeline.
 
 - **🧵 Worker‑Thread Offloading**  
-  Push heavy I/O and formatting to background threads so your main loop stays rock‑solid.
+  Push transport specific tasks to background threads so your main loop stays rock‑solid.
 
 ---
 
