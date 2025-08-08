@@ -163,7 +163,10 @@ export async function withRetry<T>(
     }
   }
 
-  throw new Error(`Operation failed after ${attempt} attempts`, {
-    cause: lastError,
-  })
+  throw new Error(
+    `Operation failed after ${Math.min(attempt, maxRetry)} attempts`,
+    {
+      cause: lastError,
+    }
+  )
 }
