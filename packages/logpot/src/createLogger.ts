@@ -38,7 +38,7 @@ export interface CreateLoggerOptions<
   /**
    * Whether to run each transport in its own worker thread.
    *
-   * @defaultValue true
+   * @defaultValue false
    */
   runAsWorker?: boolean
 
@@ -105,7 +105,7 @@ export interface CreateLoggerOptions<
 
 const DEFAULTS: CreateLoggerOptions<DEFAULT_LEVELS> = {
   logLevel: 0,
-  runAsWorker: true,
+  runAsWorker: false,
   consoleTransport: {},
 }
 
@@ -124,7 +124,7 @@ const DEFAULTS: CreateLoggerOptions<DEFAULT_LEVELS> = {
  *
  *   - runAsWorker?: boolean
  *     Whether to run each transport in its own worker thread.
- *     Default: true.
+ *     Default: false.
  *
  *   - consoleTransport?: ConsoleTransportOptions<Levels>
  *     Settings for the built-in ConsoleTransport. Pass `undefined` to disable it.

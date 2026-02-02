@@ -185,7 +185,7 @@ For high‑volume or slow I/O, offload transports to worker threads:
 ```ts
 // Offload file I/O, keep console on main thread
 createLogger({
-  runAsWorker: true
+  runAsWorker: true,
   consoleTransport: { runAsWorker: false },
   fileTransport: [{ filename: 'app.log', runAsWorker: true }],
 })
@@ -628,12 +628,12 @@ Offloading I/O and formatting to background threads keeps your main event loop f
 
 ### Overriding the Default
 
-Although workers are enabled by default, you can disable or customize them per transport:
+Workers are disabled by default, but you can enable or customize them per transport:
 
 ```ts
 const logger = await createLogger({
-  // Turn OFF worker threads globally:
-  runAsWorker: false,
+  // Turn ON worker threads globally:
+  runAsWorker: true,
 
   // Or leave console on main thread but keep others in workers:
   consoleTransport: { runAsWorker: false },
@@ -650,4 +650,4 @@ const logger = await createLogger({
 - **Slow or rate‑limited sinks** (e.g. remote HTTP endpoints)
 - **Ultra‑low latency requirements** (e.g. user‑facing CLI tools)
 
-By default, LogPot keeps your application snappy and resilient. Just configure per‑transport overrides when you need fine‑grained control.
+By default, LogPot keeps transport work on the main thread. Enable workers when you need additional isolation or throughput, and configure per‑transport overrides for fine‑grained control.

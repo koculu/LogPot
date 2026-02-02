@@ -83,7 +83,6 @@ import { createLogger } from 'logpot'
 
 const logger = await createLogger({
   levels: { TRACE: 10, DEBUG: 20, INFO: 30, WARN: 40, ERROR: 50 },
-  runAsWorker: true,
   consoleTransport: {
     formatter: {
       kind: 'template',
